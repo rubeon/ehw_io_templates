@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load markdown_deux_tags %}
+{% block pagestyle %}flatpage{% endblock %}
+{% block pagetitle %}
+{{ flatpage.title }}
+{% endblock %}
+
+{% block maincontent %}
+<h3>{{ flatpage.title}}</h3>
+{{ flatpage.content |markdown:"flatpages" }}
+{% endblock %}

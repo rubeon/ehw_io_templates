@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>{{ request.site.domain }} - {{ request.site.name }}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=1 %}
+    <link rel="stylesheet" href="{% static "ehwio-css/main.css" %}" type="text/css" media="screen" title="no title" charset="utf-8">
+    {% block extrahead %}<!-- extra header stuff -->{% endblock %}
+    {% block extrajs %}<!-- extra javascript stuff -->{% endblock %}
+    
+</head>
+
+<body>
+    <div id="blog-masthead" class="blog-masthead">
+        <div id="nav" class="container">
+            <nav class="blog-nav">
+               <a class="blog-nav-item active" href="/blog/">Home</a>
+               <a class="blog-nav-item" href="/impressum/">About</a>
+             </nav>
+        </div>
+    </div>
+    
+    <div id="messages">
+        {% bootstrap_messages %}
+    </div>
+    <div id="all" class="container">
+        {% comment %}
+        <div class="blog-header">
+          <p class="blog-title">bs3</p>
+          <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+        </div>
+        {% endcomment %}
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+				{% block main %}
+				{% endblock %}
+                {% block maincontent %}
+                    Main content goes here...
+                {% endblock %}
+                {% block comments %}
+                
+                {% endblock %}
+                {% block footer %}
+                {% endblock %}
+            </div> <!-- /.blog-main -->
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                {% block rightnav %}
+                <div class="sidebar-module sidebar-module-inset">
+                    About, etc.
+                </div>
+                {% endblock %}
+        </div> <!-- /.row -->
+    </div> <!-- /all --> 
+</body>
+</html>
