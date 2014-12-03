@@ -1,9 +1,7 @@
 {% extends "xblog/post_archive.html" %}
-{% load disqus_tags %}
-
 <!-- /templates/xblog/post_detail.html -->
 {% load markdown_deux_tags %}
-{% load disqus_tags %}
+{% load comments %}
 {% block extratitle %}{{ object.title }}{% endblock %}
 {% block yearnav %}&nbsp;&rsaquo;<a href="../../../">{{object.pub_date|date:"Y"}}</a>{% endblock %}{% block monthnav %}&nbsp;&rsaquo;<a href="../../">{{object.pub_date|date:"F"}}</a>{% endblock %}{% block daynav %}&nbsp;&rsaquo;<a href="../">{{object.pub_date|date:"d"}}</a>{% endblock %}
 {% block extrarightnav %}
@@ -11,9 +9,9 @@
 {% endblock %}	
 {% block maincontent %}
 <!-- a post -->
-
 {% include "includes/post_template.txt" %}
-{% disqus_show_comments  %}
+
+
 	{% for pb in object.pingback_set.all %}
 	{% ifchanged %}<h3>Pingbacks</h3>
 		<a id="pingbacks"></a>{% endifchanged %}
@@ -21,4 +19,11 @@
 			<span class="comnum"><a href="{{pb.source_url}}">{{ pb.title }}</a>&rarr;<a href="{{ pb.target_url }}"></a></span>
 		</div><!-- /comment -->
 	{% endfor %}
+    <div class="panel">
+        {% render_comment_form for object %}
+    </div>
+    <div class="panel">
+        {% render_comment_list for object %}
+    </div>
+    
 {% endblock %}
