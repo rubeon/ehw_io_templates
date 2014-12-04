@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ABBR<!DOCTYPE html>
 {% load bootstrap3 %}
 {% load staticfiles %}
 <head>
@@ -40,18 +40,16 @@
      </div>
  </nav>                               
  <div class="container">
+     {% for message in messages %}
+         <div class="alert alert-danger">{{ message }}</div>
+     {% endfor %}
+     
  {% block maincontent %}
  Main Content block missing.
  {% endblock %}
  </div>
  
-    <footer class="footer">
-      <div class="container">
-    {% block footer %}
-        <p class="text-muted"></p>
-        <p class="text-muted"><a href="{% url "admin:login" %}">{% bootstrap_icon "log-in" %} Sign in to admin site</a> | &copy; 2014, http://ehw.io</p>
-    {% endblock %}
-      </div>
-    </footer>
+    <footer class="footer text-muted">
+    {% block footer %}<a href="{% url "admin:login" %}">{% bootstrap_icon "log-in" %} Sign in to admin site</a> | &copy; 2014, http://ehw.io{% endblock %}</footer>
 </body>
 </html>
